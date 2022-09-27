@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34BD37EF28DFEC14006EBFED /* fridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD37EE28DFEC14006EBFED /* fridgeApp.swift */; };
+		34BD37F128DFEC14006EBFED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD37F028DFEC14006EBFED /* ContentView.swift */; };
+		34BD37F328DFEC16006EBFED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34BD37F228DFEC16006EBFED /* Assets.xcassets */; };
+		34BD37F628DFEC16006EBFED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34BD37F528DFEC16006EBFED /* Preview Assets.xcassets */; };
+		34BD37F828DFEC16006EBFED /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD37F728DFEC16006EBFED /* Persistence.swift */; };
+		34BD37FB28DFEC16006EBFED /* fridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34BD37F928DFEC16006EBFED /* fridge.xcdatamodeld */; };
+		34BD380228DFEC8D006EBFED /* FridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD380128DFEC8D006EBFED /* FridgeView.swift */; };
+		34BD380428E00F52006EBFED /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD380328E00F52006EBFED /* CoreData.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		34BD37EB28DFEC14006EBFED /* fridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34BD37EE28DFEC14006EBFED /* fridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fridgeApp.swift; sourceTree = "<group>"; };
+		34BD37F028DFEC14006EBFED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		34BD37F228DFEC16006EBFED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		34BD37F528DFEC16006EBFED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		34BD37F728DFEC16006EBFED /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		34BD37FA28DFEC16006EBFED /* fridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fridge.xcdatamodel; sourceTree = "<group>"; };
+		34BD380128DFEC8D006EBFED /* FridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeView.swift; sourceTree = "<group>"; };
+		34BD380328E00F52006EBFED /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34BD37E828DFEC14006EBFED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34BD37E228DFEC14006EBFED = {
+			isa = PBXGroup;
+			children = (
+				34BD37ED28DFEC14006EBFED /* fridge */,
+				34BD37EC28DFEC14006EBFED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34BD37EC28DFEC14006EBFED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34BD37EB28DFEC14006EBFED /* fridge.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34BD37ED28DFEC14006EBFED /* fridge */ = {
+			isa = PBXGroup;
+			children = (
+				34BD37EE28DFEC14006EBFED /* fridgeApp.swift */,
+				34BD37F028DFEC14006EBFED /* ContentView.swift */,
+				34BD380128DFEC8D006EBFED /* FridgeView.swift */,
+				34BD37F228DFEC16006EBFED /* Assets.xcassets */,
+				34BD37F728DFEC16006EBFED /* Persistence.swift */,
+				34BD380328E00F52006EBFED /* CoreData.swift */,
+				34BD37F928DFEC16006EBFED /* fridge.xcdatamodeld */,
+				34BD37F428DFEC16006EBFED /* Preview Content */,
+			);
+			path = fridge;
+			sourceTree = "<group>";
+		};
+		34BD37F428DFEC16006EBFED /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				34BD37F528DFEC16006EBFED /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34BD37EA28DFEC14006EBFED /* fridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34BD37FE28DFEC16006EBFED /* Build configuration list for PBXNativeTarget "fridge" */;
+			buildPhases = (
+				34BD37E728DFEC14006EBFED /* Sources */,
+				34BD37E828DFEC14006EBFED /* Frameworks */,
+				34BD37E928DFEC14006EBFED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = fridge;
+			productName = fridge;
+			productReference = 34BD37EB28DFEC14006EBFED /* fridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34BD37E328DFEC14006EBFED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					34BD37EA28DFEC14006EBFED = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 34BD37E628DFEC14006EBFED /* Build configuration list for PBXProject "fridge" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 34BD37E228DFEC14006EBFED;
+			productRefGroup = 34BD37EC28DFEC14006EBFED /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34BD37EA28DFEC14006EBFED /* fridge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34BD37E928DFEC14006EBFED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BD37F628DFEC16006EBFED /* Preview Assets.xcassets in Resources */,
+				34BD37F328DFEC16006EBFED /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34BD37E728DFEC14006EBFED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34BD380228DFEC8D006EBFED /* FridgeView.swift in Sources */,
+				34BD37FB28DFEC16006EBFED /* fridge.xcdatamodeld in Sources */,
+				34BD37F828DFEC16006EBFED /* Persistence.swift in Sources */,
+				34BD37F128DFEC14006EBFED /* ContentView.swift in Sources */,
+				34BD380428E00F52006EBFED /* CoreData.swift in Sources */,
+				34BD37EF28DFEC14006EBFED /* fridgeApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		34BD37FC28DFEC16006EBFED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		34BD37FD28DFEC16006EBFED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34BD37FF28DFEC16006EBFED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"fridge/Preview Content\"";
+				DEVELOPMENT_TEAM = L33J4YU2V8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = luisbravo.fridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34BD380028DFEC16006EBFED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"fridge/Preview Content\"";
+				DEVELOPMENT_TEAM = L33J4YU2V8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = luisbravo.fridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34BD37E628DFEC14006EBFED /* Build configuration list for PBXProject "fridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BD37FC28DFEC16006EBFED /* Debug */,
+				34BD37FD28DFEC16006EBFED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34BD37FE28DFEC16006EBFED /* Build configuration list for PBXNativeTarget "fridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34BD37FF28DFEC16006EBFED /* Debug */,
+				34BD380028DFEC16006EBFED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		34BD37F928DFEC16006EBFED /* fridge.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				34BD37FA28DFEC16006EBFED /* fridge.xcdatamodel */,
+			);
+			currentVersion = 34BD37FA28DFEC16006EBFED /* fridge.xcdatamodel */;
+			path = fridge.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 34BD37E328DFEC14006EBFED /* Project object */;
+}
