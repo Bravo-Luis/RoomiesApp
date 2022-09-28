@@ -29,7 +29,6 @@ struct ContentView: View {
             }
             
             
-            
         }
         .fullScreenCover(isPresented: $chatting, content: {
             chatView(presentingChatView: $chatting)
