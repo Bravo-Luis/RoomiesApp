@@ -7,47 +7,6 @@
 
 import SwiftUI
 
-import Combine
-
-class LoadingTimer {
-
-    let publisher = Timer.publish(every: 0.1, on: .main, in: .default)
-    private var timerCancellable: Cancellable?
-
-    func start() {
-        self.timerCancellable = publisher.connect()
-    }
-
-    func cancel() {
-        self.timerCancellable?.cancel()
-    }
-}
-
-struct LoadingView: View {
-
-    @State private var index = 0
-
-    private let images = (0...21).map { UIImage(named: "Image-\($0).png")! }
-    private var timer = LoadingTimer()
-
-    var body: some View {
-
-        return Image(uiImage: images[index])
-            .resizable()
-            .frame(width: 100, height: 100, alignment: .center)
-            .onReceive(
-                timer.publisher,
-                perform: { _ in
-                    self.index = self.index + 1
-                    if self.index >= 21 { self.index = 0 }
-                }
-            )
-            .onAppear { self.timer.start() }
-            .onDisappear { self.timer.cancel() }
-    }
-}
-
-
 struct FridgeView: View {
     
     var widthOfScreen = UIScreen.main.bounds.width
@@ -55,34 +14,49 @@ struct FridgeView: View {
     @Binding var roomNumber : Int
     @State var cdvm = CoreDataViewModel()
     @State var foodItemList = [FoodItem]()
+    @State var images = 1
+    @State var animating = false
+    
+    
 
-    @State var animation = LoadingTimer()
+    
+    
     var body: some View {
         
         NavigationView{
             VStack {
                 
-//                 Rectangle()
-//                    .fill(Color(.blue))
-//                       .frame(width: widthOfScreen, height: heightOfScreen / 12)
-//                
-//                Button(action: {
-                    animation.start()
-//                }){
-                   // Image("0001")
-                   //     .resizable()
-                }
-                //Spacer()
-                    //.scaledToFit()
-                //kitchenBG(roomNumber: $roomNumber)
-               // VStack(spacing: 0){
-//                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Freezer", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {freezer()})
-//                        
-//                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Fridge", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {fridge()})
-//                        
-                //}
-              //  .navigationTitle("Kitchen")
+                Image("Fridge/\(images)")
+                    .resizable()
+                    .onTapGesture {
+                        animating.toggle()
+                    }
+
             }
+            .onChange(of: animating, perform: {
+                _ in
+                if animating{
+                    images += 1
+                }
+                else{
+                    images -= 1
+                }
+            })
+            .onChange(of: images, perform: {_ in
+                if animating{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)){
+                        if images < 21 {
+                            images += 1
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)){
+                        if images > 1 {
+                            images -= 1
+                        }
+                    }
+                }
+            })
         }
         .navigationViewStyle(.stack)
         .onAppear{
