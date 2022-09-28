@@ -11,7 +11,7 @@ struct FridgeView: View {
     
     var widthOfScreen = UIScreen.main.bounds.width
     var heightOfScreen = UIScreen.main.bounds.height
-    
+    @Binding var roomNumber : Int
     @State var cdvm = CoreDataViewModel()
     @State var foodItemList = [FoodItem]()
     
@@ -19,7 +19,7 @@ struct FridgeView: View {
         
         NavigationView{
             ZStack {
-                kitchenBG()
+                kitchenBG(roomNumber: $roomNumber)
                 VStack(spacing: 0){
                     NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Freezer", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {freezer()})
                         
@@ -34,15 +34,6 @@ struct FridgeView: View {
             foodItemList = cdvm.fridge
         }
         
-    }
-}
-
-
-//MARK: Simulator
-
-struct FridgeView_Previews: PreviewProvider {
-    static var previews: some View {
-        FridgeView()
     }
 }
 
@@ -251,7 +242,7 @@ public struct PlaceholderStyle: ViewModifier {
 }
 
 private struct kitchenBG : View {
-    
+    @Binding var roomNumber : Int
     var width = UIScreen.main.bounds.width
     
     var body: some View {
@@ -260,10 +251,15 @@ private struct kitchenBG : View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Rectangle()
-                    .fill(Color(.systemYellow)).blendMode(.hue)
-                    .ignoresSafeArea()
-                    .frame(width: width, height: width / 2.5)
+                ZStack{
+                    Rectangle()
+                        .fill(Color(.systemYellow)).blendMode(.hue)
+                        .ignoresSafeArea()
+                        .frame(width: width, height: width / 2.5)
+                    
+                    Text(String(roomNumber))
+                        .font(.system(size: 30, weight: .bold, design: .rounded))
+                }
             }
             
             Rectangle()

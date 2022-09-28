@@ -15,6 +15,8 @@
 		34BD37FB28DFEC16006EBFED /* fridge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34BD37F928DFEC16006EBFED /* fridge.xcdatamodeld */; };
 		34BD380228DFEC8D006EBFED /* FridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD380128DFEC8D006EBFED /* FridgeView.swift */; };
 		34BD380428E00F52006EBFED /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD380328E00F52006EBFED /* CoreData.swift */; };
+		34C5D66F28E29B3600D89058 /* chatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5D66E28E29B3600D89058 /* chatView.swift */; };
+		34C5D67128E2B1AC00D89058 /* onboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5D67028E2B1AC00D89058 /* onboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,9 @@
 		34BD37FA28DFEC16006EBFED /* fridge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fridge.xcdatamodel; sourceTree = "<group>"; };
 		34BD380128DFEC8D006EBFED /* FridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeView.swift; sourceTree = "<group>"; };
 		34BD380328E00F52006EBFED /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		34C5D66D28E296A900D89058 /* fridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = fridge.entitlements; sourceTree = "<group>"; };
+		34C5D66E28E29B3600D89058 /* chatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatView.swift; sourceTree = "<group>"; };
+		34C5D67028E2B1AC00D89058 /* onboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +64,12 @@
 		34BD37ED28DFEC14006EBFED /* fridge */ = {
 			isa = PBXGroup;
 			children = (
+				34C5D66D28E296A900D89058 /* fridge.entitlements */,
 				34BD37EE28DFEC14006EBFED /* fridgeApp.swift */,
+				34C5D67028E2B1AC00D89058 /* onboardingView.swift */,
 				34BD37F028DFEC14006EBFED /* ContentView.swift */,
 				34BD380128DFEC8D006EBFED /* FridgeView.swift */,
+				34C5D66E28E29B3600D89058 /* chatView.swift */,
 				34BD37F228DFEC16006EBFED /* Assets.xcassets */,
 				34BD37F728DFEC16006EBFED /* Persistence.swift */,
 				34BD380328E00F52006EBFED /* CoreData.swift */,
@@ -154,6 +162,8 @@
 				34BD37F828DFEC16006EBFED /* Persistence.swift in Sources */,
 				34BD37F128DFEC14006EBFED /* ContentView.swift in Sources */,
 				34BD380428E00F52006EBFED /* CoreData.swift in Sources */,
+				34C5D67128E2B1AC00D89058 /* onboardingView.swift in Sources */,
+				34C5D66F28E29B3600D89058 /* chatView.swift in Sources */,
 				34BD37EF28DFEC14006EBFED /* fridgeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +290,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fridge/fridge.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fridge/Preview Content\"";
@@ -309,6 +320,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = fridge/fridge.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"fridge/Preview Content\"";
