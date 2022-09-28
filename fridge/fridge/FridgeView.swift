@@ -7,6 +7,47 @@
 
 import SwiftUI
 
+import Combine
+
+class LoadingTimer {
+
+    let publisher = Timer.publish(every: 0.1, on: .main, in: .default)
+    private var timerCancellable: Cancellable?
+
+    func start() {
+        self.timerCancellable = publisher.connect()
+    }
+
+    func cancel() {
+        self.timerCancellable?.cancel()
+    }
+}
+
+struct LoadingView: View {
+
+    @State private var index = 0
+
+    private let images = (0...21).map { UIImage(named: "Image-\($0).png")! }
+    private var timer = LoadingTimer()
+
+    var body: some View {
+
+        return Image(uiImage: images[index])
+            .resizable()
+            .frame(width: 100, height: 100, alignment: .center)
+            .onReceive(
+                timer.publisher,
+                perform: { _ in
+                    self.index = self.index + 1
+                    if self.index >= 21 { self.index = 0 }
+                }
+            )
+            .onAppear { self.timer.start() }
+            .onDisappear { self.timer.cancel() }
+    }
+}
+
+
 struct FridgeView: View {
     
     var widthOfScreen = UIScreen.main.bounds.width
@@ -14,19 +55,33 @@ struct FridgeView: View {
     @Binding var roomNumber : Int
     @State var cdvm = CoreDataViewModel()
     @State var foodItemList = [FoodItem]()
-    
+
+    @State var animation = LoadingTimer()
     var body: some View {
         
         NavigationView{
-            ZStack {
-                kitchenBG(roomNumber: $roomNumber)
-                VStack(spacing: 0){
-                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Freezer", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {freezer()})
-                        
-                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Fridge", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {fridge()})
-                        
+            VStack {
+                
+//                 Rectangle()
+//                    .fill(Color(.blue))
+//                       .frame(width: widthOfScreen, height: heightOfScreen / 12)
+//                
+//                Button(action: {
+                    animation.start()
+//                }){
+                   // Image("0001")
+                   //     .resizable()
                 }
-                .navigationTitle("Kitchen")
+                //Spacer()
+                    //.scaledToFit()
+                //kitchenBG(roomNumber: $roomNumber)
+               // VStack(spacing: 0){
+//                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Freezer", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {freezer()})
+//                        
+//                    NavigationLink(destination: {itemList(thisList: $foodItemList, location: "Fridge", cdvm: $cdvm, foodItemList: $foodItemList)}, label: {fridge()})
+//                        
+                //}
+              //  .navigationTitle("Kitchen")
             }
         }
         .navigationViewStyle(.stack)
@@ -38,50 +93,50 @@ struct FridgeView: View {
 }
 
 //MARK: Aesthetics
-
-private struct freezer: View {
-    
-    private var width = UIScreen.main.bounds.width
-    private var height = UIScreen.main.bounds.width * 2
-    
-    var body: some View {
-        
-        ZStack{
-            RoundedRectangle(cornerRadius: 5)
-                .fill(Color(.systemGray5))
-                .frame(width: width / 2, height: height / 6)
-                .shadow(radius: 3)
-            Rectangle()
-                .fill(Color(.systemGray5))
-                .frame(width: width / 30, height: height / 12)
-                .offset(x: -width / 6)
-                .shadow(radius: 2)
-        }
-        
-    }
-}
-
-private struct fridge: View {
-    
-    private var width = UIScreen.main.bounds.width
-    private var height = UIScreen.main.bounds.width * 2
-    
-    var body: some View {
-        
-        ZStack{
-            RoundedRectangle(cornerRadius: 5)
-                .fill(Color(.systemGray5))
-                .frame(width: width / 2, height: height / 3)
-                .shadow(radius: 3)
-            Rectangle()
-                .fill(Color(.systemGray5))
-                .frame(width: width / 30, height: height / 5)
-                .offset(x: -width / 6, y: -height / 25)
-                .shadow(radius: 2)
-        }
-        
-    }
-}
+//
+//private struct freezer: View {
+//    
+//    private var width = UIScreen.main.bounds.width
+//    private var height = UIScreen.main.bounds.width * 2
+//    
+//    var body: some View {
+//        
+//        ZStack{
+//            RoundedRectangle(cornerRadius: 5)
+//                .fill(Color(.systemGray5))
+//                .frame(width: width / 2, height: height / 6)
+//                .shadow(radius: 3)
+//            Rectangle()
+//                .fill(Color(.systemGray5))
+//                .frame(width: width / 30, height: height / 12)
+//                .offset(x: -width / 6)
+//                .shadow(radius: 2)
+//        }
+//        
+//    }
+//}
+//
+//private struct fridge: View {
+//    
+//    private var width = UIScreen.main.bounds.width
+//    private var height = UIScreen.main.bounds.width * 2
+//    
+//    var body: some View {
+//        
+//        ZStack{
+//            RoundedRectangle(cornerRadius: 5)
+//                .fill(Color(.systemGray5))
+//                .frame(width: width / 2, height: height / 3)
+//                .shadow(radius: 3)
+//            Rectangle()
+//                .fill(Color(.systemGray5))
+//                .frame(width: width / 30, height: height / 5)
+//                .offset(x: -width / 6, y: -height / 25)
+//                .shadow(radius: 2)
+//        }
+//        
+//    }
+//}
 
 //MARK: Item List
 
