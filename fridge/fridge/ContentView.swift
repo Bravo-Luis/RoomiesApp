@@ -10,19 +10,13 @@ import CoreData
 
 struct ContentView: View {
     
-    @State var chatting : Bool = false
-    
+    @State var fontSize = 0
     @State var roomNumber = 0
+    
     var body: some View {
         ZStack{
            FridgeView(roomNumber: $roomNumber)
                 .preferredColorScheme(.light)
-                .overlay{
-                    Button(action: {chatting = true}, label: {Text("Chat")
-                            .padding()
-                    })
-                        .offset(x: 150, y: -360)
-                }
             
             if roomNumber == 0 {
                 onboardingView(roomNumber: $roomNumber)
@@ -31,9 +25,7 @@ struct ContentView: View {
             
             
         }
-        .fullScreenCover(isPresented: $chatting, content: {
-            chatView(presentingChatView: $chatting)
-        })
+        
         
     }
 }

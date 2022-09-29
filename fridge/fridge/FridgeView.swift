@@ -14,9 +14,11 @@ struct FridgeView: View {
     @Binding var roomNumber : Int
     @State var cdvm = CoreDataViewModel()
     @State var foodItemList = [FoodItem]()
-    @State var images = 1
+    @State var images = 1001
     @State var animating = false
-    
+    @State var open = false
+    @State var chatting : Bool = false
+    @State var location = "Kitchen"
     
 
     
@@ -24,34 +26,65 @@ struct FridgeView: View {
     var body: some View {
         
         NavigationView{
-            VStack {
+            ZStack {
                 
-                Image("Fridge/\(images)")
+                itemList(bool: $animating, location: $location, cdvm: $cdvm, foodItemList: $foodItemList)
+                    .opacity(open ? 1 : 0)
+                    .animation(.spring().speed(0.5).delay(0), value: open)
+                
+                Image("Fridge 2/\(images)")
                     .resizable()
+                    .scaledToFit()
+                    .ignoresSafeArea(edges: .horizontal)
                     .onTapGesture {
                         animating.toggle()
                     }
+                    .scaleEffect(open ? 10 : 1)
+                    .opacity(open ? 0 : 1)
+                    .animation(.spring().speed(1).delay(0.5), value: open)
+                    .background(
+                        Color(.white)
+                            .ignoresSafeArea()
+                            .opacity(open ? 0 : 1)
+                            .animation(.spring().speed(1).delay(0.5), value: open)
+                            .frame(width: widthOfScreen, height: heightOfScreen)
+                        
+                    )
+                
+                
+                
 
             }
+            .toolbar(content: {
+                NavigationLink("Chat", destination: {chatView()})
+            })
             .onChange(of: animating, perform: {
                 _ in
                 if animating{
                     images += 1
+                    open = true
+                    withAnimation(.spring().speed(0.5)){
+                        location = "Fridge"
+                    }
                 }
                 else{
                     images -= 1
+                    open = false
+                    withAnimation(.spring().speed(0.5)){
+                        location = "Kitchen"
+                    }
                 }
             })
             .onChange(of: images, perform: {_ in
                 if animating{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)){
-                        if images < 21 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(15)){
+                        if images < 1060 {
                             images += 1
                         }
                     }
                 } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)){
-                        if images > 1 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(30)){
+                        if images > 1001 {
                             images -= 1
                         }
                     }
@@ -66,58 +99,12 @@ struct FridgeView: View {
     }
 }
 
-//MARK: Aesthetics
-//
-//private struct freezer: View {
-//    
-//    private var width = UIScreen.main.bounds.width
-//    private var height = UIScreen.main.bounds.width * 2
-//    
-//    var body: some View {
-//        
-//        ZStack{
-//            RoundedRectangle(cornerRadius: 5)
-//                .fill(Color(.systemGray5))
-//                .frame(width: width / 2, height: height / 6)
-//                .shadow(radius: 3)
-//            Rectangle()
-//                .fill(Color(.systemGray5))
-//                .frame(width: width / 30, height: height / 12)
-//                .offset(x: -width / 6)
-//                .shadow(radius: 2)
-//        }
-//        
-//    }
-//}
-//
-//private struct fridge: View {
-//    
-//    private var width = UIScreen.main.bounds.width
-//    private var height = UIScreen.main.bounds.width * 2
-//    
-//    var body: some View {
-//        
-//        ZStack{
-//            RoundedRectangle(cornerRadius: 5)
-//                .fill(Color(.systemGray5))
-//                .frame(width: width / 2, height: height / 3)
-//                .shadow(radius: 3)
-//            Rectangle()
-//                .fill(Color(.systemGray5))
-//                .frame(width: width / 30, height: height / 5)
-//                .offset(x: -width / 6, y: -height / 25)
-//                .shadow(radius: 2)
-//        }
-//        
-//    }
-//}
-
 //MARK: Item List
 
 private struct itemList: View {
     
-    @Binding var thisList : [FoodItem]
-    var location : String
+    @Binding var bool : Bool
+    @Binding var location : String
     @Binding var cdvm : CoreDataViewModel
     @State var adding = false
     @Binding var foodItemList : [FoodItem]
@@ -130,7 +117,7 @@ private struct itemList: View {
             NavigationView{
                 
                 List{
-                    ForEach(thisList, id: \.self){
+                    ForEach(foodItemList, id: \.self){
                         item in
                         if item.location == location {
                             Text(item.name ?? "Error")
@@ -145,20 +132,36 @@ private struct itemList: View {
             
             VStack{
                 Spacer()
-                Button(action: {adding = true}){
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(Color(.systemBlue))
-                            .frame(width: width - 60, height: width / 8)
-                        Text("Add Item")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(.white))
+                HStack{
+                    Button(action: {bool = false}){
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(.systemRed))
+                                .frame(width: (width - 60) / 2 , height: width / 8)
+                            Text("Back")
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(Color(.white))
+                        }
+                        
                     }
+                    .padding(.bottom)
                     
+                    Button(action: {adding = true}){
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(.systemBlue))
+                                .frame(width: (width - 60) / 2 , height: width / 8)
+                            Text("Add Item")
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(Color(.white))
+                        }
+                        
+                    }
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
                     
             }
+            
         }
         .fullScreenCover(isPresented: $adding, content: {foodAddScreen(adding: $adding, newItemLocation: location, cdvm: $cdvm, foodItemList: $foodItemList)})
         
@@ -269,106 +272,3 @@ public struct PlaceholderStyle: ViewModifier {
         }
     }
 }
-
-private struct kitchenBG : View {
-    @Binding var roomNumber : Int
-    var width = UIScreen.main.bounds.width
-    
-    var body: some View {
-        ZStack{
-            Color(.systemMint).opacity(0.3)
-                .ignoresSafeArea()
-            VStack {
-                Spacer()
-                ZStack{
-                    Rectangle()
-                        .fill(Color(.systemYellow)).blendMode(.hue)
-                        .ignoresSafeArea()
-                        .frame(width: width, height: width / 2.5)
-                    
-                    Text(String(roomNumber))
-                        .font(.system(size: 30, weight: .bold, design: .rounded))
-                }
-            }
-            
-            Rectangle()
-                .fill(Color(.systemBrown).opacity(0.9))
-                .frame(width: width, height: width / 2)
-                .offset(y: width / 4)
-                .background(
-                    Color(.black)
-                        .ignoresSafeArea()
-                        .offset(y: width / 4)
-                )
-            
-            
-            Rectangle()
-                .fill(Color(.systemBrown))
-                .frame(width: width, height: width / 30)
-                .offset(y: -width / 60)
-            
-            Rectangle()
-                .fill(Color(.systemBrown))
-                .frame(width: width, height: width / 30)
-                .offset(y: -width / 60.1)
-                .shadow(radius: 3)
-            
-            
-            VStack {
-                ZStack{
-                    Rectangle()
-                        .fill(Color(.systemBrown))
-                        .frame(width: width / 4, height: width / 7)
-                        .offset(x: width / 2.5, y: width / 4)
-                        .shadow(radius: 2)
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemYellow).opacity(0.6))
-                        .frame(width: width / 30, height: width / 30)
-                        .offset(x: width / 2.2, y: width / 4)
-                        .shadow(radius: 3)
-                }
-                ZStack{
-                    Rectangle()
-                        .fill(Color(.systemBrown))
-                        .frame(width: width / 4, height: width / 7)
-                        .offset(x: width / 2.5, y: width / 4)
-                        .shadow(radius: 2)
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemYellow).opacity(0.6))
-                        .frame(width: width / 30, height: width / 30)
-                        .offset(x: width / 2.2, y: width / 4)
-                        .shadow(radius: 3)
-                }
-                ZStack{
-                    Rectangle()
-                        .fill(Color(.systemBrown))
-                        .frame(width: width / 4, height: width / 7)
-                        .offset(x: width / 2.5, y: width / 4)
-                        .shadow(radius: 2)
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemYellow).opacity(0.6))
-                        .frame(width: width / 30, height: width / 30)
-                        .offset(x: width / 2.2, y: width / 4)
-                        .shadow(radius: 3)
-                }
-                .hidden()
-            }
-            ZStack {
-                Rectangle()
-                    .fill(Color(.systemBrown))
-                    .frame(width: width / 4, height: width / 2.25)
-                    .offset(x: -width / 2.5, y: width / 4)
-                    .shadow(radius: 2)
-                RoundedRectangle(cornerRadius: 4)
-                    .fill(Color(.systemYellow).opacity(0.6))
-                    .frame(width: width / 30, height: width / 30)
-                    .offset(x: -width / 2.2, y: width / 4)
-                    .shadow(radius: 3)
-            }
-            
-            
-            
-        }
-    }
-}
-

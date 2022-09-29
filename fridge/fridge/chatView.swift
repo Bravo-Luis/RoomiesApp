@@ -8,40 +8,72 @@
 import SwiftUI
 
 struct chatView: View {
-    @Binding var presentingChatView : Bool
     @State var user = "Luis"
-    @State var messageList : [message] = [message(sender: "Luis", text: "Hey Victor, it's Luis"), message(sender: "Luis", text: "Hey I have to tell you something"), message(sender: "Luis", text: "What?!?!?"), message(sender: "Victor", text: "I think i love you <3"), message(sender: "Luis", text: "Bruh")]
+    @State var messageList : [message] = []
+    @State var yourText = ""
     var width = UIScreen.main.bounds.width
     
     var body: some View {
-        ZStack{
-            Color(.gray).opacity(0.5)
-                .ignoresSafeArea()
+        VStack{
             
-            VStack(spacing: 5){
-                ForEach(messageList){
-                    message in
-                    messageView(thisMessage: message, thisUser: user)
+            ScrollView {
+                        ScrollViewReader { proxy in
+                            
+                            VStack(spacing: 5){
+                                ForEach(messageList){
+                                    message in
+                                    messageView(thisMessage: message, thisUser: user)
+                                }
+                            }
+                            
+                        }
+                    }
+            
+            ScrollViewReader{ value in
+                ScrollView(.vertical, showsIndicators: false){
+                    
                 }
+                
             }
-            
-            VStack{
+
+                
                 ZStack {
+                
                     Rectangle()
                         .fill(.gray.opacity(0.8))
-                    .frame(width: width, height: width / 3)
+                    .frame(width: width, height: width / 5)
+                    .ignoresSafeArea()
                     
                     HStack {
-                        Button(action: {presentingChatView = false}, label: {Text("Back")
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
-                        })
-                        .padding(.leading)
-                        Spacer()
+                        TextField("Message", text: $yourText)
+                            .font(.system(size: width / 25))
+                            .padding()
+                            .textFieldStyle(.roundedBorder)
+                            
+                        
+                        Button(action: {
+                            if !yourText.isEmpty{
+                                withAnimation{
+                                    messageList.append(message(sender: user, text: yourText))
+                                    yourText = ""
+                                }
+                            }
+                        } ){
+                            Text("Send")
+                                .font(.system(size: width / 25, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        .padding()
+                        .buttonStyle(.borderedProminent)
+                        
                     }
+                    
+                    
+                    
+                    
                 }
-                Spacer()
-            }
-            .ignoresSafeArea()
+                .keyboardType(.default)
+            
                 
                 
             
@@ -59,7 +91,7 @@ struct messageView: View{
             ZStack {
                 ZStack {
                     Text(thisMessage.text)
-                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .font(.system(size: width / 25, weight: .medium, design: .rounded))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(15)
@@ -78,12 +110,12 @@ struct messageView: View{
                 VStack(spacing: 0) {
                     HStack{
                         Text(thisMessage.sender)
-                            .font(.system(size: 15, weight: .light, design: .rounded))
+                            .font(.system(size: width / 35, weight: .light, design: .rounded))
                             .opacity(0.5)
                     }
                     
                     Text(thisMessage.text)
-                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .font(.system(size: width / 25, weight: .medium, design: .rounded))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(15)
@@ -101,8 +133,10 @@ struct messageView: View{
 }
 
 
-struct message : Identifiable {
+struct message : Identifiable, Hashable{
     var id = UUID()
     var sender : String
     var text : String
 }
+
+
